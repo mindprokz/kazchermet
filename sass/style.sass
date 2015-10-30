@@ -38,6 +38,8 @@ body
 	font-family : Roboto, sans-serif
 	background : url(../img/bg.jpg) center no-repeat
 	background-size : cover
+	@include small_Device
+		height: 100vh
 	min-width : 360px
 
 h1,h2,h3,h4,h5,h6
@@ -99,19 +101,18 @@ a
 	@include mobile_small_Device
 		width: 80%
 		font-size: 11pt
+		margin: 25px auto
 	@include extra_small_Device
 		width: 400px
 		font-size: 15pt
+		margin: 10px 0 20px  50%
+		transform : translate(-125% , 0)
 	background : #d61e24
 	padding: 10px 0 10px 40px
 	text-transform : uppercase
 	color : #fff
 	border-radius : 7px
 	border-bottom : 2px solid #740003
-	@include mobile_small_Device
-		margin: 25px auto
-	@include small_Device
-		margin: 10px 0 20px  15%
 	text-align : left
 	cursor : pointer
 	&:hover
