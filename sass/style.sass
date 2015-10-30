@@ -1,18 +1,32 @@
 
+@mixin small_Device
+	@media (min-width:1000px)
+		@content
 
-@mixin clear()
+@mixin mini_small_Device
+	@media (min-width:720px)
+		@content
+
+@mixin extra_small_Device
+	@media (min-width:550px)
+		@content
+
+@mixin mobile_small_Device
+	@media (min-width:1px)
+		@content	
+
+.clear
 	&:after
 		content : '.'
 		display : table
 		clear : both
 
-@mixin bold()
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,700&subset=latin,cyrillic)
+
+.bold
 	font-weight : 700
 
-@mixin light()
-	font-weight : 300
-
-@mixin thin()
+.light
 	font-weight : 100
 
 *
@@ -21,6 +35,10 @@
 body
 	padding : 0
 	margin : 0
+	font-family : Roboto, sans-serif
+	background : url(../img/bg.jpg) center no-repeat
+	background-size : cover
+	min-width : 360px
 
 h1,h2,h3,h4,h5,h6
 	-webkit-margin-before : 0
@@ -31,5 +49,77 @@ h1,h2,h3,h4,h5,h6
 
 a 
 	text-decoration : none
+	&:hover
+		text-decoration: none
+		color : #fff
+.logotype
+	text-align : center
+	padding-top: 1%
+	margin-bottom: 2%
+	& > img
+		@include mobile_small_Device
+			width: 60%
+		@include small_Device
+			width: 569px
+.content
+	@include mobile_small_Device
+		width: 80%
+	@include small_Device
+		width: 1000px
+	margin: auto
+	background: #fff
+	padding: 20px 35px 0px 30px 
+	img[alt="arrow"]
+		padding-left: 15px
+		@include mobile_small_Device
+			display: none
 
-			
+	.text_content
+		@include mobile_small_Device
+			width: 100%
+		@include small_Device
+			width: 50%
+			float: left
+		width: 48%
+		font-size: 13pt
+		text-align: left
+
+	.video	
+		@include mobile_small_Device
+			width: 100%
+			& > img
+				width: 100%
+
+		@include small_Device
+			width: 50%
+			float: right
+
+.button
+	display : block
+	@include mobile_small_Device
+		width: 80%
+		font-size: 11pt
+	@include extra_small_Device
+		width: 400px
+		font-size: 15pt
+	background : #d61e24
+	padding: 10px 0 10px 40px
+	text-transform : uppercase
+	color : #fff
+	border-radius : 7px
+	border-bottom : 2px solid #740003
+	@include mobile_small_Device
+		margin: 25px auto
+	@include small_Device
+		margin: 10px 0 20px  15%
+	text-align : left
+	cursor : pointer
+	&:hover
+		background : #c11f24
+	.button_text
+		vertical-align: sub
+		text-shadow: 1px 1px 1px rgba(52,52,52, .8)
+		padding-left: 35px
+		color : #fff
+		&:hover
+			text-decoration: none

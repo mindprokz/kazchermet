@@ -32,7 +32,7 @@ gulp.task('js', function() {
 
 // taks for watch change files
 gulp.task('watch', function(){
-	gulp.watch('scss/*.sass', ['sass']);
+	gulp.watch('sass/*.sass', ['sass']);
 	gulp.watch('index.html', ['html']);
 	gulp.watch('js/*.js', ['js']);
 });
