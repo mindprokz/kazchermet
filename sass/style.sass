@@ -20,6 +20,7 @@
 		content : '.'
 		display : table
 		clear : both
+		visibility: hidden
 
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,700&subset=latin,cyrillic)
 
@@ -36,10 +37,6 @@ body
 	padding : 0
 	margin : 0
 	font-family : Roboto, sans-serif
-	background : url(../img/bg.jpg) center no-repeat
-	background-size : cover
-	@include small_Device
-		height: 100vh
 	min-width : 360px
 
 h1,h2,h3,h4,h5,h6
@@ -54,6 +51,11 @@ a
 	&:hover
 		text-decoration: none
 		color : #fff
+
+.main_page
+	background : url(../img/bg.jpg) center
+	background-size : cover
+
 .logotype
 	text-align : center
 	padding-top: 1%
@@ -102,10 +104,13 @@ a
 		width: 80%
 		font-size: 11pt
 		margin: 25px auto
+		transform : translate(0 , 0)
 	@include extra_small_Device
 		width: 400px
 		font-size: 15pt
 		margin: 10px 0 20px  50%
+		transform : translate(-50% , 0)
+	@include small_Device
 		transform : translate(-125% , 0)
 	background : #d61e24
 	padding: 10px 0 10px 40px
@@ -124,3 +129,105 @@ a
 		color : #fff
 		&:hover
 			text-decoration: none
+
+.body_test
+	background: #efefef
+	header
+		background: #fff
+		padding: 15px 15px 15px 30px
+		img[alt="logotype_test"]
+			@include mobile_small_Device
+				width: 100%
+			@include extra_small_Device
+				width: 309px
+
+	h3
+		color: #424242
+		padding-top: 50px
+		padding-bottom: 60px
+		font-size: 15pt
+		@include mobile_small_Device
+			text-align: center
+			padding-left: 0
+		@include small_Device
+			padding-left: 10%
+			text-align: left
+
+	form
+		@include mobile_small_Device
+			width: 100%
+		@include extra_small_Device
+			width: 360px
+		@include mobile_small_Device
+			margin: auto
+			float: none
+		@include small_Device
+			margin: 0 0 0 5%
+			float: left
+		label
+			display: block
+			span 
+				float: left
+				width: 100px
+				text-align: left
+				color: #4a4a4a
+				font-size: 13pt;
+				padding-top: 5px
+			input 
+				@include mobile_small_Device
+					width: 220px
+				@include small_Device
+					width: 260px
+				float: right
+				height: 32px
+				border: 2px solid #d7d7d7
+				outline: 0;
+				padding: 0 5px
+				color: #2a2a2a
+				font-family: Roboto
+				font-size: 11pt
+				font-weight: bold
+				transition: outline .1s linear
+				&:focus
+					outline: 2px solid rgba(237,81,83, 0.6)
+	.content_enter_test
+		float: left
+		color: #2a2a2a
+		padding-left: 2%
+		@include mobile_small_Device
+			width: 100%
+			text-align: center
+		@include small_Device
+			width: 55%
+			text-align: left
+
+		h2
+			font-size: 13pt
+		p 
+			font-size: 13pt
+		.button_enter
+			display : block
+			font-size: 14pt
+			@include mobile_small_Device
+				margin: 25px auto
+				width: 190px
+			@include small_Device
+				margin: 25px 0
+				width: 330px
+			background : #ed5153
+			padding: 5px 0 5px 40px
+			color : #fff
+			border-radius : 7px
+			border-bottom : 2px solid #d34447
+			text-align : left
+			cursor : pointer
+			&:hover
+				background : #c11f24
+			.button_text
+				vertical-align: super
+				text-shadow: 0px 0px 1px rgba(255,73,76, .8)
+				padding-left: 35px
+				color : #fff
+				&:hover
+					text-decoration: none
+
