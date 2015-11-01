@@ -17,7 +17,7 @@
 <body class="body_test">
 	<header><img src="../img/logo.png" alt="logotype_test"></header>
 	<h3 class="bold">Для того, чтобы начать тестирование, пожалуйста представьтесь</h3>
-    <form action="create.php" method="POST">
+    <form id="main_data" action="create.php" method="POST">
     	<label class="clear">
 	        <span>ФИО</span>
 	        <input type="text" name="name" required placeholder="Фамилия имя">
@@ -43,7 +43,13 @@
     	<h2>В данном тесте представлено 10 вопросов (8 закрытых и 2 открытых).</h2>
     	<p>Вам будет предложено 5 вариантов ответов. правильный ответ только один. В закрытых вопросах вы можете ошибиться только один раз. Время на прохождение теста неограничено. Правильные ответы выражают философию и точку зрения компании.</p>
     	<p>Просим отнестись к данной задаче серьезно, так как возможность ответить будет один раз. <br> <span class="bold">Если вы готовы нажмите на кнопку ниже:</span></p>
-    	<a id="submit_button" class="button_enter bold"><img src="../img/ico.png" alt="icon"><span class="button_text">Начать тестирование</span></a>
+    	<a id="submit_button" class="button_enter bold"><input id="input_submit" form="main_data" type="submit"><img src="../img/ico.png" alt="icon"><span class="button_text">Начать тестирование</span></a>
     </div>
+<script>
+	document.getElementById('input_submit').addEventListener('click',function(){
+		document.forms[0].setAttribute('action','create.php');
+		document.forms[0].setAttribute('method','POST');
+	});
+</script>
 </body>
 </html>

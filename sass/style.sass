@@ -207,6 +207,7 @@ a
 			font-size: 13pt
 		.button_enter
 			display : block
+			position: relative
 			font-size: 14pt
 			@include mobile_small_Device
 				margin: 25px auto
@@ -220,7 +221,7 @@ a
 			border-radius : 7px
 			border-bottom : 2px solid #d34447
 			text-align : left
-			cursor : pointer
+			transition : background .3s ease
 			&:hover
 				background : #c11f24
 			.button_text
@@ -230,4 +231,145 @@ a
 				color : #fff
 				&:hover
 					text-decoration: none
+			#input_submit
+				position: absolute
+				top: 0
+				left: 0
+				width: 100%
+				height: 100%
+				display: block
+				opacity: 0
+				cursor: pointer
 
+.test_page
+	background: #efefef
+	padding: 0 0 15px 0
+	header
+		background: #fff
+		padding: 15px 15px 15px 30px
+		img[alt="logotype_test"]
+			@include mobile_small_Device
+				width: 100%
+			@include extra_small_Device
+				width: 309px	
+.noactive_block_test
+	display : none
+
+.test_question
+	@include mobile_small_Device
+		padding-left: 1%
+		transform : translate(0%, 0%)
+	@include small_Device
+		padding-left: 50%
+		transform : translate(-25%, 0%)
+	h4
+		color : #2a2a2a
+		font-size: 17pt
+		margin-bottom: 15px
+	h3
+		color : #2a2a2a
+		font-weight: bold
+		font-size: 17pt
+		margin-bottom: 25px
+	label
+		font-weight: 300
+		font-size: 14pt
+		cursor: pointer
+	input[type="radio"]
+		display: none
+	textarea
+		border : 2px solid #f43d3e
+		box-shadow : 0px 0px 0px #f43d3e
+		transition: box-shadow .3s ease-in
+		padding: 15px
+		font-size: 11pt;
+		@include mobile_small_Device
+			width: 320px
+			max-width: 320px
+		@include small_Device
+			width: 510px
+			max-width: 510px
+		height: 200px
+		max-height: 200px
+		&:focus
+			outline: 0
+			box-shadow : 0px 0px 5px #f43d3e
+	.label
+		float: left
+		width: 25px;
+		height: 25px;
+		border-radius: 50% ;
+		border: 1px solid #f43d3e;
+		background : rgba(0,0,0,0)
+		position: relative;
+		margin-bottom: 5px;
+		margin-right: 10px
+		.circle
+			display: block;
+			border-radius: 50%;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			width: 40%;
+			height: 40%;
+			background: rgba(244,68,69, 0.9)
+			opacity: 0;
+			transition: opacity .2s ease-in;
+	input:checked + .label>.circle
+		opacity: 1;
+		transition: opacity .2s ease-out;
+
+.cont
+	display : block
+	position: relative
+	font-size: 14pt
+	width: 220px
+	background : #ed5153
+	padding: 10px 0 10px 0px
+	color : #fff
+	border-radius : 7px
+	border-bottom : 2px solid #d34447
+	text-align : center
+	cursor : pointer
+	transition : background .3s ease
+	&:hover
+		background : #c11f24
+
+.content_noready_test
+	padding-top: 50px
+	@include mobile_small_Device
+		width: 100%
+	@include extra_small_Device
+		width: 550px
+	margin : auto
+	color : #2e2e2e
+	h3
+		font-size: 30pt
+	p 
+		font-size: 12pt
+		text-align: justify
+	img
+		float: left
+	.cont
+		float: right
+
+.content_noready_test2
+	padding-top: 50px
+	@include mobile_small_Device
+		width: 100%
+	@include extra_small_Device
+		width: 550px
+	margin : auto
+	color : #2e2e2e
+	h3
+		font-size: 28pt
+	p 
+		font-size: 12pt
+		text-align: justify
+	img
+		float: left
+	.cont
+		float: right
+
+		

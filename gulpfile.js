@@ -24,10 +24,9 @@ gulp.task('sass', function () {
 
 // task for JS 
 gulp.task('js', function() {
-  return gulp.src('js/*.js')
+  	gulp.src('js/*.js')
     .pipe(uglify())
-    .pipe(rename('common.min.js'))
-    .pipe(gulp.dest('js/'));
+    .pipe(gulp.dest('js/script/'));
 });
 
 // taks for watch change files

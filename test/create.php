@@ -8,21 +8,23 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
-	<!-- Optional theme -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+	<!-- Optional theme
+	<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 
-	<!-- Latest compiled and minified JavaScript -->
+	<!-- Latest compiled and minified JavaScript 
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-	<style>
-	.noactive_block_test{
-		display: none;
-	}
-	</style>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>-->
+
+	<link rel="shortcut icon" href="../img/favicon/favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" href="../img/favicon/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="../72x72" href="img/favicon/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="../114x114" href="img/favicon/apple-touch-icon-114x114.png">
+	<link rel="stylesheet" href="../sass/style.min.css">
 </head>
-<body>
+<body class="test_page">
+	<header><img src="../img/logo.png" alt="logotype_test"></header>
 <?php
 	function connect_db(){
 		$mysqli_infunc = new mysqli('srv-db-plesk06.ps.kz:3306','kz123_test1','Admin123','kz123161_test11');
@@ -45,6 +47,7 @@
 						('$name','$email', '$number','$check')
 						");
 	};
+
 	$check = false;
 	function check_people(){
 		$mysqli = connect_db();
@@ -59,10 +62,19 @@
 	$check = check_people();
 ?>
 <?php if(!$_POST['name']):?>
-	<h3>Заполните анкету</h3>
+	<div class="content_noready_test clear">
+		<img src="../img/anketa.png" alt="anketa">
+		<h3>Заполните анкету</h3>
+		<p>Чтобы пройти тест нужно заполнить анкету с данными, нажмите на кнопку ниже, что бы перейти к странице для заполнения данных.</p>
+		<a class="cont" href="index.php">Заполнить анкету</a>
+	</div>
 	<?php else:?>
 	<? if($check): ?>
-		<h3>Вы проходили тест</h3>
+		<div class="content_noready_test2 clear">
+			<img src="../img/anketa.png" alt="anketa">
+			<h3>Вы проходили тест</h3>
+			<p>Тестирование можно пройти только один раз, спасибо за участие.</p>
+		</div>
 	<? else: ?>
 			<h3><?php echo $results_test;?></h3>
 			<form name="my" action="success.php" method="POST">
@@ -87,229 +99,359 @@
 			</form>
 
 	<div class="test_question">
+		<h4><span class="bold">Вопросы:</span> 1 из 10</h4>
 		<h3>1.	Эффективный управленец это?</h3>
 		<div class="radio first_ques">
-			<label>
+			<label class="clear">
 				<input type="radio" name="optionsRadios" value="- Человек, который имеет большой опыт в управлении Компании">
+				<span class="label">
+					<span class="circle"></span>
+				</span>
 				- Человек, который имеет большой опыт в управлении Компании
-			</label> <br>
-			<label>
+			</label>
+			<label class="clear">
 				<input type="radio" name="optionsRadios" value="- Человек, который умеет спросить с подчиненных результат">
+				<span class="label">
+					<span class="circle"></span>
+				</span>
 				- Человек, который умеет спросить с подчиненных результат
-			</label> <br>
-			<label>
+			</label>
+			<label class="clear">
 				<input type="radio" name="optionsRadios" value="- Человек, который умеет правильно ставить задачи">
+				<span class="label">
+					<span class="circle"></span>
+				</span>
 				- Человек, который умеет правильно ставить задачи
-			</label> <br>
-			<label>
+			</label>
+			<label class="clear">
 				<input type="radio" name="optionsRadios" value="- Человек, который умеет четко организовать бизнес-процессы в компании">
+				<span class="label">
+					<span class="circle"></span>
+				</span>
 				- Человек, который умеет четко организовать бизнес-процессы в компании
-			</label> <br>
-			<label>
+			</label>
+			<label class="clear">
 				<input type="radio" name="optionsRadios" value="- Человек, который умеет зарабатывать деньги">
+				<span class="label">
+					<span class="circle"></span>
+				</span>
 				- Человек, который умеет зарабатывать деньги
-			</label> <br>
-			<a class="cont">Следующий</a>
+			</label>
+			<a class="cont">Следующий вопрос</a>
 		</div>
 	</div>
 
 	<div class="test_question noactive_block_test">
+		<h4><span class="bold">Вопросы:</span> 2 из 10</h4>
 		<h3>2.	Каких людей нужно искать в команду?</h3>
 		<div class="radio two_ques">
-			<label>
+			<label class="clear">
 				<input type="radio" name="optionsRadios" value="- Которые четко исполняют, то что им говорят">
+				<span class="label">
+					<span class="circle"></span>
+				</span>
 				- Которые четко исполняют, то что им говорят
-			</label> <br>
-			<label>
+			</label>
+			<label class="clear">
 				<input type="radio" name="optionsRadios" value="- Людей с высшим образованием">
+				<span class="label">
+					<span class="circle"></span>
+				</span>
 				- Людей с высшим образованием
-			</label> <br>
-			<label>
+			</label>
+			<label class="clear">
 				<input type="radio" name="optionsRadios" value="- Людей с опытом работы">
+				<span class="label">
+					<span class="circle"></span>
+				</span>
 				- Людей с опытом работы
-			</label> <br>
-			<label>
+			</label>
+			<label class="clear">
 				<input type="radio" name="optionsRadios" value="- Не слабее себя">
+				<span class="label">
+					<span class="circle"></span>
+				</span>
 				- Не слабее себя
-			</label> <br>
-			<label>
+			</label>
+			<label class="clear">
 				<input type="radio" name="optionsRadios" value="- Зарубежных специалистов">
+				<span class="label">
+					<span class="circle"></span>
+				</span>
 				- Зарубежных специалистов
-			</label> <br>
-			<a class="cont">Следующий</a>
+			</label>
+			<a class="cont">Следующий вопрос</a>
 		</div>
 	</div>
 
 	<div class="test_question noactive_block_test">
+		<h4><span class="bold">Вопросы:</span> 3 из 10</h4>
 		<h3>3.	Какой минимальный доход должен приносить эффективный управленец с активов в 1 млн.$?</h3>
 		<div class="radio three_ques">
-			<label>
+			<label class="clear">
 				<input type="radio" name="optionsRadios" value="- 50 000 $">
+				<span class="label">
+					<span class="circle"></span>
+				</span>
 				- 50 000 $ 
-			</label> <br>
-			<label>
+			</label>
+			<label class="clear">
 				<input type="radio" name="optionsRadios" value="- 10 $">
+				<span class="label">
+					<span class="circle"></span>
+				</span>
 				- 10 $
-			</label> <br>
-			<label>
+			</label>
+			<label class="clear">
 				<input type="radio" name="optionsRadios" value="- Самоокупаемость, нет дохода">
+				<span class="label">
+					<span class="circle"></span>
+				</span>
 				- Самоокупаемость, нет дохода
-			</label> <br>
-			<label>
+			</label>
+			<label class="clear">
 				<input type="radio" name="optionsRadios" value="- зависит от внешних факторов (динамика рынка, девальвация, сезонность)">
+				<span class="label">
+					<span class="circle"></span>
+				</span>
 				- зависит от внешних факторов (динамика рынка, девальвация, сезонность)
-			</label> <br>
-			<label>
+			</label>
+			<label class="clear">
 				<input type="radio" name="optionsRadios" value="- неограниченный">
+				<span class="label">
+					<span class="circle"></span>
+				</span>
 				- неограниченный
-			</label> <br>
-			<a class="cont">Следующий</a>
+			</label>
+			<a class="cont">Следующий вопрос</a>
 		</div>
 	</div>
 
 	<div class="test_question noactive_block_test">
+		<h4><span class="bold">Вопросы:</span> 4 из 10</h4>
 		<h3>4.	Что для вас самое ценное?</h3>
 		<div class="radio four_ques">
-			<label>
+			<label class="clear">
 				<input type="radio" name="optionsRadios" value="- моя семья">
+				<span class="label">
+					<span class="circle"></span>
+				</span>
 				- моя семья
-			</label> <br>
-			<label>
+			</label>
+			<label class="clear">
 				<input type="radio" name="optionsRadios" value="- деньги">
+				<span class="label">
+					<span class="circle"></span>
+				</span>
 				- деньги
-			</label> <br>
-			<label>
+			</label>
+			<label class="clear">
 				<input type="radio" name="optionsRadios" value="- я сам">
+				<span class="label">
+					<span class="circle"></span>
+				</span>
 				- я сам
-			</label> <br>
-			<label>
+			</label>
+			<label class="clear">
 				<input type="radio" name="optionsRadios" value="- компания">
+				<span class="label">
+					<span class="circle"></span>
+				</span>
 				- компания
-			</label> <br>
-			<label>
+			</label>
+			<label class="clear">
 				<input type="radio" name="optionsRadios" value="- моральные ценности">
+				<span class="label">
+					<span class="circle"></span>
+				</span>
 				- моральные ценности
-			</label> <br>
-			<a class="cont">Следующий</a>
+			</label>
+			<a class="cont">Следующий вопрос</a>
 		</div>
 	</div>
 
 	<div class="test_question noactive_block_test">
+		<h4><span class="bold">Вопросы:</span> 5 из 10</h4>
 		<h3>5.	Как найти человека сильней себя в команду?</h3>
 			<textarea class="form-control" rows="6"></textarea>
-			<a class="cont">Следующий</a>
+			<a class="cont">Следующий вопрос</a>
 	</div>
 
 	<div class="test_question noactive_block_test">
+		<h4><span class="bold">Вопросы:</span> 6 из 10</h4>
 		<h3>6.	Кто эффективному управленцу ставит цель?</h3>
 		<div class="radio six_ques">
-			<label>
+			<label class="clear">
 				<input type="radio" name="optionsRadios" value="- Совет директоров	">
+				<span class="label">
+					<span class="circle"></span>
+				</span>
 				- Совет директоров
-			</label> <br>
-			<label>
+			</label>
+			<label class="clear">
 				<input type="radio" name="optionsRadios" value="- Сам себе">
+				<span class="label">
+					<span class="circle"></span>
+				</span>
 				- Сам себе
-			</label> <br>
-			<label>
+			</label>
+			<label class="clear">
 				<input type="radio" name="optionsRadios" value="- Учредитель">
+				<span class="label">
+					<span class="circle"></span>
+				</span>
 				- Учредитель
-			</label> <br>
-			<label>
+			</label>
+			<label class="clear">
 				<input type="radio" name="optionsRadios" value="- Начальник отдела">
+				<span class="label">
+					<span class="circle"></span>
+				</span>
 				- Начальник отдела
-			</label> <br>
-			<label>
+			</label>
+			<label class="clear">
 				<input type="radio" name="optionsRadios" value="- Члены семьи ">
+				<span class="label">
+					<span class="circle"></span>
+				</span>
 				- Члены семьи 
-			</label> <br>
-			<a class="cont">Следующий</a>
+			</label>
+			<a class="cont">Следующий вопрос</a>
 		</div>
 	</div>
 
 	<div class="test_question noactive_block_test">
+		<h4><span class="bold">Вопросы:</span> 7 из 10</h4>
 		<h3>7.	Если продажи упали во время кризиса, кто виноват?</h3>
 		<div class="radio seven_ques">
-			<label>
+			<label class="clear">
 				<input type="radio" name="optionsRadios" value="- Внешние факторы">
+				<span class="label">
+					<span class="circle"></span>
+				</span>
 				- Внешние факторы
-			</label> <br>
-			<label>
+			</label>
+			<label class="clear">
 				<input type="radio" name="optionsRadios" value="- Отдел продаж">
+				<span class="label">
+					<span class="circle"></span>
+				</span>
 				- Отдел продаж
-			</label> <br>
-			<label>
+			</label>
+			<label class="clear">
 				<input type="radio" name="optionsRadios" value="- Управленец">
+				<span class="label">
+					<span class="circle"></span>
+				</span>
 				- Управленец
-			</label> <br>
-			<label>
+			</label>
+			<label class="clear">
 				<input type="radio" name="optionsRadios" value="- Никто не виноват, ситуация такая на рынке">
+				<span class="label">
+					<span class="circle"></span>
+				</span>
 				- Никто не виноват, ситуация такая на рынке
-			</label> <br>
-			<label>
+			</label>
+			<label class="clear">
 				<input type="radio" name="optionsRadios" value="- Клиенты">
+				<span class="label">
+					<span class="circle"></span>
+				</span>
 				- Клиенты
-			</label> <br>
-			<a class="cont">Следующий</a>
+			</label>
+			<a class="cont">Следующий вопрос</a>
 		</div>
 	</div>
 
 	<div class="test_question noactive_block_test">
+		<h4><span class="bold">Вопросы:</span> 8 из 10</h4>
 		<h3>8.	Что для вас приоритетно при выборе работы?</h3>
 			<textarea class="form-control" rows="6"></textarea>
-			<a class="cont">Следующий</a>
+			<a class="cont">Следующий вопрос</a>
 	</div>
 
 	<div class="test_question noactive_block_test">
+		<h4><span class="bold">Вопросы:</span> 9 из 10</h4>
 		<h3>9.	Как вы защитите мою собственность?</h3>
 		<div class="radio nine_ques">
-			<label>
+			<label class="clear">
 				<input type="radio" name="optionsRadios" value="- Буду соблюдать все законы">
+				<span class="label">
+					<span class="circle"></span>
+				</span>
 				- Буду соблюдать все законы
-			</label> <br>
-			<label>
+			</label>
+			<label class="clear">
 				<input type="radio" name="optionsRadios" value="- Не буду рисковать">
+				<span class="label">
+					<span class="circle"></span>
+				</span>
 				- Не буду рисковать
-			</label> <br>
-			<label>
+			</label>
+			<label class="clear">
 				<input type="radio" name="optionsRadios" value="- Застрахую имущество">
+				<span class="label">
+					<span class="circle"></span>
+				</span>
 				- Застрахую имущество
-			</label> <br>
-			<label>
+			</label>
+			<label class="clear">
 				<input type="radio" name="optionsRadios" value="- Вызову экстрасенса">
+				<span class="label">
+					<span class="circle"></span>
+				</span>
 				- Вызову экстрасенса
-			</label> <br>
-			<label>
+			</label>
+			<label class="clear">
 				<input type="radio" name="optionsRadios" value="- Прибылью">
+				<span class="label">
+					<span class="circle"></span>
+				</span>
 				- Прибылью
-			</label> <br>
-			<a class="cont">Следующий</a>
+			</label>
+			<a class="cont">Следующий вопрос</a>
 		</div>
 	</div>
 
 	<div class="test_question noactive_block_test">
+		<h4><span class="bold">Вопросы:</span> 10 из 10</h4>
 		<h3>10.	 Как вы думаете почему только не большой процент населения зарабатывает больше 100 тыс.$?</h3>
 		<div class="radio ten_ques">
-			<label>
+			<label class="clear">
 				<input type="radio" name="optionsRadios" value="- Не у всех есть стартовый капитал, чтобы столько зарабатывать">
+				<span class="label">
+					<span class="circle"></span>
+				</span>
 				- Не у всех есть стартовый капитал, чтобы столько зарабатывать
-			</label> <br>
-			<label>
+			</label>
+			<label class="clear">
 				<input type="radio" name="optionsRadios" value="- Родились не в той стране">
+				<span class="label">
+					<span class="circle"></span>
+				</span>
 				- Родились не в той стране
-			</label> <br>
-			<label>
+			</label>
+			<label class="clear">
 				<input type="radio" name="optionsRadios" value="- Не оказались в нужное время в нужном месте">
+				<span class="label">
+					<span class="circle"></span>
+				</span>
 				- Не оказались в нужное время в нужном месте
-			</label> <br>
-			<label>
+			</label>
+			<label class="clear">
 				<input type="radio" name="optionsRadios" value="- Не ищут способов, а находят причины почему не получается">
+				<span class="label">
+					<span class="circle"></span>
+				</span>
 				- Не ищут способов, а находят причины почему не получается
-			</label> <br>
-			<label>
+			</label>
+			<label class="clear">
 				<input type="radio" name="optionsRadios" value="- Не у всех есть нужные связи">
+				<span class="label">
+					<span class="circle"></span>
+				</span>
 				- Не у всех есть нужные связи
-			</label> <br>
+			</label>
 			<a class="cont">Закончить тест</a>
 		</div>
 	</div>
@@ -369,6 +511,7 @@
 				values.errors++;
 				if(values.errors == 2){
 					//Если ошибки 2 то форму отправляем на обработку
+					stopTiming();
 					document.forms.my.submit();
 				}else{
 					values.change_active_test();//переключение вопросов
@@ -418,8 +561,24 @@
 		document.querySelectorAll('.cont')[9].addEventListener('click', function(){
 			values.add_for_input(document.querySelector('.ten_ques input:checked').value);
 			document.forms.my.check.setAttribute('value','Прошел');
+			stopTiming();
 			document.forms.my.submit();
 		});
+
+		var timing = {
+			min : 0,
+			sec : 0
+		};
+		var timer = setInterval(function(){
+			if(timing.sec !== 59)
+				timing.sec++;
+			else{timing.min++;timin.sec = 0;}
+		}, 1000);
+		function stopTiming(){
+			clearInterval(timer);
+			var second = timing.sec > 9 ? timing.sec : '0' + timin.sec;
+			document.forms.my.time.setAttribute('value',timing.min + ':' + second)
+		};
 	</script>
 		<?php endif ?>
 <?php endif ?>

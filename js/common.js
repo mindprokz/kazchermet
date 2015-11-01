@@ -1,5 +1,5 @@
-$(document).ready(function() {
-
+$(document).ready(function() { 
+ 
 	//Цели для Яндекс.Метрики и Google Analytics
 	$(".count_element").on("click", (function() {
 		ga("send", "event", "goal", "goal");
@@ -43,4 +43,4 @@ $(document).ready(function() {
 
 	$("img, a").on("dragstart", function(event) { event.preventDefault(); });
 
-});
+}); 
