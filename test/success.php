@@ -3,8 +3,14 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
+
+	<link rel="shortcut icon" href="../img/favicon/favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" href="../img/favicon/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="../72x72" href="img/favicon/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="../114x114" href="img/favicon/apple-touch-icon-114x114.png">
+	<link rel="stylesheet" href="../sass/style.min.css">
 </head>
-<body>
+<body class="main_page">
 <?php
 	function connect_db(){
 		$mysqli_infunc = new mysqli('srv-db-plesk06.ps.kz:3306','kz123_test1','Admin123','kz123161_test11');
@@ -43,10 +49,16 @@
 					");
 	};
 	if(!$_POST['name']){
-		echo "404";
+		echo '
+		<div class="content_noready_test clear">
+			<img src="../img/anketa.png" alt="anketa">
+			<h3>Заполните анкету</h3>
+			<p>Чтобы пройти тест нужно заполнить анкету с данными, нажмите на кнопку ниже, что бы перейти к странице для заполнения данных.</p>
+			<a class="cont" href="index.php">Заполнить анкету</a>
+		</div>'
 	};
 	if ($_POST['name']){
-		echo "тут1";
+
 		if ( $check == false ){
 			$name_user = $_POST['name'];
 			$email_user = $_POST['email'];
@@ -65,9 +77,12 @@
 			$eight_q = $_POST['eight'];
 			$nine_q = $_POST['nine'];
 			$ten_q = $_POST['ten'];
-			echo "Успех1 <br>";
 			create_people($name_user,$email_user,$numbers_user,$country_user,$city_user,$timing_user,$check_user,$one_q,$two_q,$three_q,$four_q,$five_q,$six_q,$seven_q,$eight_q,$nine_q,$ten_q);
-			echo "Успех <br>";
+			if ($check_user == 'Прошел'){
+
+			}else{
+				//Если человек не прошет тест
+			};
 		}else{
 			echo "<h3>Данные занесены!</h3>";
 		};
