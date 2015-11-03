@@ -338,6 +338,7 @@ a
 
 .content_noready_test
 	padding-top: 50px
+	position: relative
 	@include mobile_small_Device
 		width: 100%
 	@include extra_small_Device
@@ -373,6 +374,38 @@ a
 		float: right
 
 .main_page
+	//position: relative
 	.content_noready_test
 		background : #fff
 		padding-right: 25px		
+		//position: absolute
+		//top: 25%
+		//left: 25%
+	.black_bg
+		width: 100%
+		height: 100%
+		position: absolute
+		top: 0
+		left: 0
+		background: rgba(0,0,0, 0.7)
+
+#video_ready
+	width: 100%
+	float : none
+#text_header
+	color: #d51414
+	font-size : 22pt
+	padding: 10px 0
+	text-align : center
+#headest
+	background : #ec4e50
+	color : #fff
+	text-align : center
+	font-size : 15pt
+	&+p
+		background : #fff
+		padding: 25px
+		margin: 0
+	&+p>a 
+		color: #0a6984
+		border-bottom : 1px dotted #0a6984

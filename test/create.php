@@ -576,7 +576,7 @@
 		}, 1000);
 		function stopTiming(){
 			clearInterval(timer);
-			var second = timing.sec > 9 ? timing.sec : '0' + timin.sec;
+			var second = timing.sec > 9 ? timing.sec : '0' + timing.sec;
 			document.forms.my.time.setAttribute('value',timing.min + ':' + second)
 		};
 	</script>
