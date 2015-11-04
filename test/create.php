@@ -572,15 +572,22 @@
 		var timer = setInterval(function(){
 			if(timing.sec !== 59)
 				timing.sec++;
-			else{timing.min++;timin.sec = 0;}
+			else{timing.min++;timing.sec = 0;}
 		}, 1000);
 		function stopTiming(){
 			clearInterval(timer);
 			var second = timing.sec > 9 ? timing.sec : '0' + timing.sec;
+			console.log(timing.min + ':' + second);
 			document.forms.my.time.setAttribute('value',timing.min + ':' + second)
 		};
 	</script>
 		<?php endif ?>
 <?php endif ?>
+
+		<script>
+			window.addEventListener('load',function(){
+				history.pushState({page: 1}, "title 1", "?page=1");
+			});
+		</script>
 </body>
 </html>

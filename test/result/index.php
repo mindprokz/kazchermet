@@ -1,60 +1,66 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-	<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.3.0/build/cssreset/reset-min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <style type="text/css">
-    	.close{
-    		display: none !important;
-    	}
-    	.open{
-    		display: table-row !important;
-    	}
-    </style>
-</head>
-<body>
-
 <?php
 $login = $_POST['login'];
 $pass = $_POST['pass'];
 ?>
+<!DOCTYPE html>
+<?php if ($login === NULL): ?>
+    <html id="result" lang="ru">
+<?php else:?>
+    <html lang="ru">
+<?php endif?>
+    <head>
+    <meta charset="UTF-8">
+    <title>Результаты теста</title>
+    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.3.0/build/cssreset/reset-min.css">
+    <link rel="stylesheet" href="../../sass/style.min.css">
+    <style>
+        .close{
+            display: none !important;
+        }
+        .open{
+            display: table-row !important;
+        }
+    </style>
+    <!-- Latest compiled and minified JavaScript -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+</head>
 
 <?php if ($login === NULL): ?>
+<body class="admin_panel_enter">
     <form action="index.php" method="POST">
+        <h3>Вход в админ панель</h3>
         <input type="text" name="login" class="form-control">
-        <input type="text" name="pass" class="form-control">
-        <input type="submit" type="button" class="btn btn-success" value="Отправить">
+        <input type="password" name="pass" class="form-control">
+        <label class="button">
+            Войти
+            <input type="submit" value="Отправить">
+        </label>
     </form>
 <?php else: ?>
-<?php if ($login == 'admin' && $pass == 'abc123'): ?>     
+<?php if ($login == 'admin' && $pass == 'abc123'): ?>   
+<body class="admin_panel">  
+<header><img src="../../img/logo.png" alt="logotype_test"></header>
+<h3 class="bold">Результаты тестирования респондентов</h3>
 <div id="tabs">
-    <a href="#content1">Вкладка 1</a>
-    <a href="#content2">Вкладка 2</a>
+    <a href="#content1">Прошли тестирование</a>
+    <a href="#content2">Не прошли тестирование</a>
 
     <div class="tabs_content">
       <div id="content1">
-	        <label>
-	            Поиск по таблице
-	            <input id="tablesearchinput" />
+	        <label class="search_table">
+	            <input id="tablesearchinput" class="search_admin" placeholder="поиск">
 	        </label>
-	        <table id="tabledata" border="1" cellpadding="5" width="100%" class="">
+	        <table id="tabledata" border="0" cellpadding="0" width="90%" class="">
 	            <thead>
 	            <tr>
-	                <th>id</th>
-	                <th>Имя</th>
-	                <th>Email</th>
-	                <th>Номер</th>
-                    <th>Страна</th>
-                    <th>Город</th>
-                    <th>Время</th>
+	                <th class="bold first">id</th>
+	                <th class="bold">Имя</th>
+	                <th class="bold">Email</th>
+	                <th class="bold">Номер</th>
+                    <th class="bold">Страна</th>
+                    <th class="bold">Город</th>
+                    <th class="bold last">Время</th>
 	            </tr>
 	            </thead>
 	            <tbody>
@@ -63,20 +69,19 @@ $pass = $_POST['pass'];
 	        </table>
       </div>
       <div id="content2">
-	        <label>
-	            Поиск по таблице
-	            <input id="tablesearchinput2" />
+	        <label class="search_table">
+	            <input id="tablesearchinput2" class="search_admin" placeholder="поиск">
 	        </label>
-	        <table id="tabledata2" border="1" cellpadding="5" width="100%" class="">
+	        <table id="tabledata2" border="0" cellpadding="0" width="90%" class="">
 	            <thead>
 	            <tr>
-	                <th>id</th>
-	                <th>Имя</th>
-	                <th>Email</th>
-	                <th>Номер</th>
-                    <th>Страна</th>
-                    <th>Город</th>
-                    <th>Время</th>
+	                <th class="bold first">id</th>
+	                <th class="bold">Имя</th>
+	                <th class="bold">Email</th>
+	                <th class="bold">Номер</th>
+                    <th class="bold">Страна</th>
+                    <th class="bold">Город</th>
+                    <th class="bold last">Время</th>
 	            </tr>
 	            </thead>
 	            <tbody>
@@ -132,7 +137,7 @@ function showPeopleTrue()
     {
         if($rows[check_us] == 'Прошел') {
             echo '<tr data-active="false" data-parent="lines'.$rows[id].'" class="parent_click">
-                    <th>' . $rows[id] . '</th>
+                    <td class="id">' . $rows[id] . '</td>
                     <td>' . $rows[name] . '</td>
                     <td>' . $rows[email] . '</td>
                     <td>' . $rows[numbers] . '</td>
@@ -141,45 +146,45 @@ function showPeopleTrue()
                     <td>' . $rows[time] . '</td>
                 </tr>
                 <tr id="lines'.$rows[id].'" class="close">
-                    <td colspan="7">
-                        <table>
-                            <tr class="lines'.$rows[id].' close">
+                    <td class="tr_table" colspan="7">
+                        <table class="table_answer">
+                            <tr class="answer lines'.$rows[id].' close">
                                 <td>Вопрос №1</td>
                                 <td>'.$rows[one].'</td>
                             </tr>
-                            <tr class="lines'.$rows[id].' close">
+                            <tr class="answer lines'.$rows[id].' close">
                                 <td>Вопрос №2</td>
                                 <td>'.$rows[two].'</td>
                             </tr>
-                            <tr class="lines'.$rows[id].' close">
+                            <tr class="answer lines'.$rows[id].' close">
                                 <td>Вопрос №3</td>
                                 <td>'.$rows[three].'</td>
                             </tr>
-                            <tr class="lines'.$rows[id].' close">
+                            <tr class="answer lines'.$rows[id].' close">
                                 <td>Вопрос №4</td>
                                 <td>'.$rows[four].'</td>
                             </tr>
-                            <tr class="lines'.$rows[id].' close">
+                            <tr class="answer lines'.$rows[id].' close">
                                 <td>Вопрос №5</td>
                                 <td>'.$rows[five].'</td>
                             </tr>
-                            <tr class="lines'.$rows[id].' close">
+                            <tr class="answer lines'.$rows[id].' close">
                                 <td>Вопрос №6</td>
                                 <td>'.$rows[six].'</td>
                             </tr>
-                            <tr class="lines'.$rows[id].' close">
+                            <tr class="answer lines'.$rows[id].' close">
                                 <td>Вопрос №7</td>
                                 <td>'.$rows[seven].'</td>
                             </tr>
-                            <tr class="lines'.$rows[id].' close">
+                            <tr class="answer lines'.$rows[id].' close">
                                 <td>Вопрос №8</td>
                                 <td>'.$rows[eight].'</td>
                             </tr>
-                            <tr class="lines'.$rows[id].' close">
+                            <tr class="answer lines'.$rows[id].' close">
                                 <td>Вопрос №9</td>
                                 <td>'.$rows[nine].'</td>
                             </tr>
-                            <tr class="lines'.$rows[id].' close">
+                            <tr class="answer lines'.$rows[id].' close">
                                 <td>Вопрос №10</td>
                                 <td>'.$rows[ten].'</td>
                             </tr>
@@ -198,7 +203,7 @@ function showPeopleFalse()
     {
         if($rows[check_us] == 'Не прошел') {
             echo '<tr  data-active="false" data-parent="lines'.$rows[id].'" class="parent_click">
-                    <th>' . $rows[id] . '</th>
+                    <td class="id">' . $rows[id] . '</td>
                     <td>' . $rows[name] . '</td>
                     <td>' . $rows[email] . '</td>
                     <td>' . $rows[numbers] . '</td>
@@ -207,45 +212,45 @@ function showPeopleFalse()
                     <td>' . $rows[time] . '</td>
                 </tr>
                 <tr id="lines'.$rows[id].'" class="close">
-                    <td colspan="7">
-                        <table>
-                            <tr class="lines'.$rows[id].' close">
+                    <td class="tr_table" colspan="7">
+                        <table class="table_answer">
+                            <tr class="answer lines'.$rows[id].' close">
                                 <td>Вопрос №1</td>
                                 <td>'.$rows[one].'</td>
                             </tr>
-                            <tr class="lines'.$rows[id].' close">
+                            <tr class="answer lines'.$rows[id].' close">
                                 <td>Вопрос №2</td>
                                 <td>'.$rows[two].'</td>
                             </tr>
-                            <tr class="lines'.$rows[id].' close">
+                            <tr class="answer lines'.$rows[id].' close">
                                 <td>Вопрос №3</td>
                                 <td>'.$rows[three].'</td>
                             </tr>
-                            <tr class="lines'.$rows[id].' close">
+                            <tr class="answer lines'.$rows[id].' close">
                                 <td>Вопрос №4</td>
                                 <td>'.$rows[four].'</td>
                             </tr>
-                            <tr class="lines'.$rows[id].' close">
+                            <tr class="answer lines'.$rows[id].' close">
                                 <td>Вопрос №5</td>
                                 <td>'.$rows[five].'</td>
                             </tr>
-                            <tr class="lines'.$rows[id].' close">
+                            <tr class="answer lines'.$rows[id].' close">
                                 <td>Вопрос №6</td>
                                 <td>'.$rows[six].'</td>
                             </tr>
-                            <tr class="lines'.$rows[id].' close">
+                            <tr class="answer lines'.$rows[id].' close">
                                 <td>Вопрос №7</td>
                                 <td>'.$rows[seven].'</td>
                             </tr>
-                            <tr class="lines'.$rows[id].' close">
+                            <tr class="answer lines'.$rows[id].' close">
                                 <td>Вопрос №8</td>
                                 <td>'.$rows[eight].'</td>
                             </tr>
-                            <tr class="lines'.$rows[id].' close">
+                            <tr class="answer lines'.$rows[id].' close">
                                 <td>Вопрос №9</td>
                                 <td>'.$rows[nine].'</td>
                             </tr>
-                            <tr class="lines'.$rows[id].' close">
+                            <tr class="answer lines'.$rows[id].' close">
                                 <td>Вопрос №10</td>
                                 <td>'.$rows[ten].'</td>
                             </tr>
