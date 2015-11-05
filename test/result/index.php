@@ -3,7 +3,7 @@ $login = $_POST['login'];
 $pass = $_POST['pass'];
 ?>
 <!DOCTYPE html>
-<?php if ($login === NULL): ?>
+<?php if ($login === NULL || $login !== 'admin' || $pass !== 'abc123'): ?>
     <html id="result" lang="ru">
 <?php else:?>
     <html lang="ru">
@@ -115,7 +115,17 @@ $pass = $_POST['pass'];
 		$("#tabs>a:first").trigger("click");
     </script>
 <?php else: ?>
-    <h3>Не правильный логин или пароль</h3>
+<body class="admin_panel_enter">
+    <h2>Не правильный логин или пароль</h2>
+    <form action="index.php" method="POST">
+        <h3>Вход в админ панель</h3>
+        <input type="text" name="login" class="form-control">
+        <input type="password" name="pass" class="form-control">
+        <label class="button">
+            Войти
+            <input type="submit" value="Отправить">
+        </label>
+    </form>
 <?php endif ?>
 
 <?php endif ?>
@@ -149,44 +159,12 @@ function showPeopleTrue()
                     <td class="tr_table" colspan="7">
                         <table class="table_answer">
                             <tr class="answer lines'.$rows[id].' close">
-                                <td>Вопрос №1</td>
-                                <td>'.$rows[one].'</td>
-                            </tr>
-                            <tr class="answer lines'.$rows[id].' close">
-                                <td>Вопрос №2</td>
-                                <td>'.$rows[two].'</td>
-                            </tr>
-                            <tr class="answer lines'.$rows[id].' close">
-                                <td>Вопрос №3</td>
-                                <td>'.$rows[three].'</td>
-                            </tr>
-                            <tr class="answer lines'.$rows[id].' close">
-                                <td>Вопрос №4</td>
-                                <td>'.$rows[four].'</td>
-                            </tr>
-                            <tr class="answer lines'.$rows[id].' close">
-                                <td>Вопрос №5</td>
+                                <td class="length_ques">Вопрос №5</td>
                                 <td>'.$rows[five].'</td>
                             </tr>
                             <tr class="answer lines'.$rows[id].' close">
-                                <td>Вопрос №6</td>
-                                <td>'.$rows[six].'</td>
-                            </tr>
-                            <tr class="answer lines'.$rows[id].' close">
-                                <td>Вопрос №7</td>
-                                <td>'.$rows[seven].'</td>
-                            </tr>
-                            <tr class="answer lines'.$rows[id].' close">
-                                <td>Вопрос №8</td>
+                                <td class="length_ques">Вопрос №8</td>
                                 <td>'.$rows[eight].'</td>
-                            </tr>
-                            <tr class="answer lines'.$rows[id].' close">
-                                <td>Вопрос №9</td>
-                                <td>'.$rows[nine].'</td>
-                            </tr>
-                            <tr class="answer lines'.$rows[id].' close">
-                                <td>Вопрос №10</td>
-                                <td>'.$rows[ten].'</td>
                             </tr>
                         </table>
                     </td>
