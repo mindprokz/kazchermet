@@ -21,7 +21,8 @@
 	<link rel="apple-touch-icon" href="../img/favicon/apple-touch-icon.png">
 	<link rel="apple-touch-icon" sizes="../72x72" href="img/favicon/apple-touch-icon-72x72.png">
 	<link rel="apple-touch-icon" sizes="../114x114" href="img/favicon/apple-touch-icon-114x114.png">
-	<link rel="stylesheet" href="../sass/style.min.css">
+	<link rel="stylesheet" href="../css/style.min.css">
+	<link rel="shortcut icon" href="http://kazchermet.com/favicon.ico" type="image/x-icon">
 </head>
 <body class="test_page">
 	<header><img src="../img/logo.png" alt="logotype_test"></header>
@@ -200,7 +201,7 @@
 				<span class="label">
 					<span class="circle"></span>
 				</span>
-				- 10 $
+				- 10 %
 			</label>
 			<label class="clear">
 				<input type="radio" name="optionsRadios" value="- Самоокупаемость, нет дохода">
@@ -214,14 +215,14 @@
 				<span class="label">
 					<span class="circle"></span>
 				</span>
-				- зависит от внешних факторов (динамика рынка, девальвация, сезонность)
+				- Зависит от внешних факторов (динамика рынка, девальвация, сезонность)
 			</label>
 			<label class="clear">
 				<input type="radio" name="optionsRadios" value="- неограниченный">
 				<span class="label">
 					<span class="circle"></span>
 				</span>
-				- неограниченный
+				- Неограниченный
 			</label>
 			<a class="cont">Следующий вопрос</a>
 		</div>
@@ -236,35 +237,35 @@
 				<span class="label">
 					<span class="circle"></span>
 				</span>
-				- моя семья
+				- Моя семья
 			</label>
 			<label class="clear">
 				<input type="radio" name="optionsRadios" value="- деньги">
 				<span class="label">
 					<span class="circle"></span>
 				</span>
-				- деньги
+				- Деньги
 			</label>
 			<label class="clear">
 				<input type="radio" name="optionsRadios" value="- я сам">
 				<span class="label">
 					<span class="circle"></span>
 				</span>
-				- я сам
+				- Я сам
 			</label>
 			<label class="clear">
 				<input type="radio" name="optionsRadios" value="- компания">
 				<span class="label">
 					<span class="circle"></span>
 				</span>
-				- компания
+				- Компания
 			</label>
 			<label class="clear">
 				<input type="radio" name="optionsRadios" value="- моральные ценности">
 				<span class="label">
 					<span class="circle"></span>
 				</span>
-				- моральные ценности
+				- Моральные ценности
 			</label>
 			<a class="cont">Следующий вопрос</a>
 		</div>
@@ -465,7 +466,7 @@
 			'- Человек, который умеет зарабатывать деньги',
 			'- Не слабее себя',
 			'- неограниченный',
-			'- я сам',
+			'- Я сам',
 			'',
 			'- Сам себе',
 			'- Управленец',
@@ -510,10 +511,12 @@
 			}else{
 				values.errors++;
 				if(values.errors == 2){
+					document.querySelector('input[name="'+values.form_input[values.iter]+'"]').setAttribute('value', 'Не отвечен: '+values.answer[values.iter]);
 					//Если ошибки 2 то форму отправляем на обработку
 					stopTiming();
 					document.forms.my.submit();
 				}else{
+					document.querySelector('input[name="'+values.form_input[values.iter]+'"]').setAttribute('value', 'Не отвечен: '+values.answer[values.iter]);
 					values.change_active_test();//переключение вопросов
 					values.iter++;
 				}

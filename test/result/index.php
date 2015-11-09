@@ -12,7 +12,8 @@ $pass = $_POST['pass'];
     <meta charset="UTF-8">
     <title>Результаты теста</title>
     <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.3.0/build/cssreset/reset-min.css">
-    <link rel="stylesheet" href="../../sass/style.min.css">
+    <link rel="stylesheet" href="../../css/style.min.css">
+    <link rel="shortcut icon" href="http://kazchermet.com/favicon.ico" type="image/x-icon">
     <style>
         .close{
             display: none !important;

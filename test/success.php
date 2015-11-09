@@ -8,7 +8,8 @@
 	<link rel="apple-touch-icon" href="../img/favicon/apple-touch-icon.png">
 	<link rel="apple-touch-icon" sizes="../72x72" href="img/favicon/apple-touch-icon-72x72.png">
 	<link rel="apple-touch-icon" sizes="../114x114" href="img/favicon/apple-touch-icon-114x114.png">
-	<link rel="stylesheet" href="../sass/style.min.css">
+	<link rel="stylesheet" href="../css/style.min.css">
+	<link rel="shortcut icon" href="http://kazchermet.com/favicon.ico" type="image/x-icon">
 </head>
 <body class="test_page">
 	<header><img src="../img/logo.png" alt="logotype_test"></header>
@@ -83,10 +84,10 @@
 			if ($check_user == 'Прошел'){
 				echo '
 					<div class="content_noready_test clear">
+						<h3 id="text_header">Поздравляем вы прошли тестирование</h3>
 						<img id="video_ready" src="../img/video_ready.jpg" alt="">
 						<div class="text_content">
-							<h3 id="text_header">Поздравляем вы прошли тестирование</h3>
-							<p><span class="bold">Контакты для связи: </span> + 7 (702) 700-00-00,  example@mail.ru </p>
+							<p><span class="bold">Просим вас связаться по телефону </span> + 7 (705) 755-44-44 </p>
 						</div>
 					</div>	
 				';
@@ -94,7 +95,10 @@
 				echo '
 					<div class="content_noready_test clear">
 						<header id="headest" class="bold">Уважаемый респондент!</header>
-						<p>Благодарим вас за прохождения теста. К сожалению, тест не был пройден. <a href="#">Рекомендуем вам несколько полезных книг по управленческим навыкам</a></p>
+						<p>Благодарим вас за прохождения теста. К сожалению, тест не был пройден. В 
+							благодарность за потраченное время предлагаем вам несколько полезных книг по 
+							управленческим навыкам.
+						</p>
 					</div>
 				';
 			};
