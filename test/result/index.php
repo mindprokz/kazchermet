@@ -21,6 +21,9 @@ $pass = $_POST['pass'];
         .open{
             display: table-row !important;
         }
+      .red_bg{
+        color: #e31e24;
+      }
     </style>
     <!-- Latest compiled and minified JavaScript -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -43,7 +46,7 @@ $pass = $_POST['pass'];
 <body class="admin_panel">  
 <header><img src="../../img/logo.png" alt="logotype_test"></header>
 <h3 class="bold">Результаты тестирования респондентов</h3>
-<div id="tabs">
+  <div id="tabs" style="background: #efefef;">
     <a href="#content1">Прошли тестирование</a>
     <a href="#content2">Не прошли тестирование</a>
 
@@ -62,6 +65,7 @@ $pass = $_POST['pass'];
                     <th class="bold">Страна</th>
                     <th class="bold">Город</th>
                     <th class="bold last">Время</th>
+                    <th class="bold last">Дата</th>
 	            </tr>
 	            </thead>
 	            <tbody>
@@ -83,6 +87,8 @@ $pass = $_POST['pass'];
                     <th class="bold">Страна</th>
                     <th class="bold">Город</th>
                     <th class="bold last">Время</th>
+                    <th class="bold last">Кол-во вопросов</th>
+                    <th class="bold last">Дата</th>
 	            </tr>
 	            </thead>
 	            <tbody>
@@ -134,27 +140,28 @@ $pass = $_POST['pass'];
 <?php
 function connect_db()
 {
-    $mysqli_infunc = new mysqli('srv-db-plesk06.ps.kz:3306', 'kz123_test1', 'Admin123', 'kz123161_test11');
+    $mysqli_infunc = new mysqli('localhost', 'kipscrap_8', '000001', 'kipscrap_8');
     return $mysqli_infunc;
 };
-
-
+$iter_id_show_true_people = 1;
 function showPeopleTrue()
 {
     $mysqli = connect_db();
     echo $mysqli->connect_error;
-    $result = $mysqli->query('SELECT * FROM test1');
+    $result = $mysqli->query('SELECT * FROM jobs');
     while ($rows = $result->fetch_assoc())
     {
         if($rows[check_us] == 'Прошел') {
+        	$iter_id_show_true_people = $iter_id_show_true_people + 1;
             echo '<tr data-active="false" data-parent="lines'.$rows[id].'" class="parent_click">
-                    <td class="id">' . $rows[id] . '</td>
+                    <td class="id">' . $iter_id_show_true_people . '</td>
                     <td>' . $rows[name] . '</td>
                     <td>' . $rows[email] . '</td>
                     <td>' . $rows[numbers] . '</td>
                     <td>' . $rows[country] . '</td>
                     <td>' . $rows[city] . '</td>
                     <td>' . $rows[time] . '</td>
+                    <td>' . $rows[date_reg] . '</td>
                 </tr>
                 <tr id="lines'.$rows[id].'" class="close">
                     <td class="tr_table" colspan="7">
@@ -173,25 +180,29 @@ function showPeopleTrue()
         }
     }
 };
+$iter_id_show_false_people = 1;
 function showPeopleFalse()
 {
     $mysqli = connect_db();
     echo $mysqli->connect_error;
-    $result = $mysqli->query('SELECT * FROM test1');
+    $result = $mysqli->query('SELECT * FROM jobs');
     while ($rows = $result->fetch_assoc())
     {
         if($rows[check_us] == 'Не прошел') {
+			$iter_id_show_false_people = $iter_id_show_false_people + 1;
             echo '<tr  data-active="false" data-parent="lines'.$rows[id].'" class="parent_click">
-                    <td class="id">' . $rows[id] . '</td>
+                    <td class="id">' . $iter_id_show_false_people . '</td>
                     <td>' . $rows[name] . '</td>
                     <td>' . $rows[email] . '</td>
                     <td>' . $rows[numbers] . '</td>
                     <td>' . $rows[country] . '</td>
                     <td>' . $rows[city] . '</td>
                     <td>' . $rows[time] . '</td>
+                    <td>' . $rows[ques_ans] . '</td>
+                    <td>' . $rows[date_reg] . '</td>
                 </tr>
                 <tr id="lines'.$rows[id].'" class="close">
-                    <td class="tr_table" colspan="7">
+                    <td class="tr_table" colspan="8">
                         <table class="table_answer">
                             <tr class="answer lines'.$rows[id].' close">
                                 <td>Вопрос №1</td>

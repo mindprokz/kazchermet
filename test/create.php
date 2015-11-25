@@ -28,13 +28,13 @@
 	<header><img src="../img/logo.png" alt="logotype_test"></header>
 <?php
 	function connect_db(){
-		$mysqli_infunc = new mysqli('srv-db-plesk06.ps.kz:3306','kz123_test1','Admin123','kz123161_test11');
+		$mysqli_infunc = new mysqli('localhost','kipscrap_8','000001','kipscrap_8');
 		return $mysqli_infunc;
 	};
 	function showPeople(){
 		$mysqli = connect_db();
 		echo $mysqli->connect_error;
-		$result = $mysqli->query('SELECT * FROM test1');
+		$result = $mysqli->query('SELECT * FROM jobs');
 		$rows = '';
 		while($rows = $result->fetch_assoc()){
 			echo "<p>Имя:".$rows[name]."</p>";
@@ -42,7 +42,7 @@
 	};
 	function create_people($name, $email,$number,$check){
 		$mysqli = connect_db();
-		$mysqli->query("INSERT INTO test1 
+		$mysqli->query("INSERT INTO jobs 
 						(name, email, numbers,check_us)
 						VALUES 
 						('$name','$email', '$number','$check')
@@ -52,7 +52,7 @@
 	$check = false;
 	function check_people(){
 		$mysqli = connect_db();
-		$result = $mysqli->query('SELECT * FROM test1');
+		$result = $mysqli->query('SELECT * FROM jobs');
 		$rows = '';
 		while($rows = $result->fetch_assoc()){
 			if($rows[numbers] == $_POST['numbers']){
@@ -62,7 +62,7 @@
 	};
 	$check = check_people();
 ?>
-<?php if(!$_POST['name']):?>
+<?php if(!$_POST['name'] || !$_POST['email'] || !$_POST['country'] || !$_POST['city']):?>
 	<div class="content_noready_test clear">
 		<img src="../img/anketa.png" alt="anketa">
 		<h3>Заполните анкету</h3>
@@ -86,6 +86,8 @@
 				<input type="text" name="city" value="<? echo $_POST['city']?>" style="display:none;">
 				<input type="text" name="time" value="0:00" style="display:none;">
 				<input type="text" name="check" value="Не прошел" style="display:none;">
+				<input type="text" name="ques_ans" value="0" style="display:none">
+				<input type="text" name="date_time" value="" style="display:none">
 
 				<input type="text" name="one" value="Не отвечен" style="display:none;">
 				<input type="text" name="two" value="Не отвечен" style="display:none;">
@@ -151,7 +153,7 @@
 				<span class="label">
 					<span class="circle"></span>
 				</span>
-				- Которые четко исполняют, то что им говорят
+				- Которые четко исполняют то, что им говорят
 			</label>
 			<label class="clear">
 				<input type="radio" name="optionsRadios" value="- Людей с высшим образованием">
@@ -197,7 +199,7 @@
 				- 50 000 $ 
 			</label>
 			<label class="clear">
-				<input type="radio" name="optionsRadios" value="- 10 $">
+				<input type="radio" name="optionsRadios" value="- 10 %">
 				<span class="label">
 					<span class="circle"></span>
 				</span>
@@ -247,7 +249,7 @@
 				- Деньги
 			</label>
 			<label class="clear">
-				<input type="radio" name="optionsRadios" value="- я сам">
+				<input type="radio" name="optionsRadios" value="- Я сам">
 				<span class="label">
 					<span class="circle"></span>
 				</span>
@@ -274,7 +276,7 @@
 	<div class="test_question noactive_block_test">
 		<h4><span class="bold">Вопросы:</span> 5 из 10</h4>
 		<h3>5.	Как найти человека сильней себя в команду?</h3>
-			<textarea class="form-control" rows="6"></textarea>
+			<textarea class="form-control" rows="6" placeholder="Напишите ответ"></textarea>
 			<a class="cont">Следующий вопрос</a>
 	</div>
 
@@ -367,7 +369,7 @@
 	<div class="test_question noactive_block_test">
 		<h4><span class="bold">Вопросы:</span> 8 из 10</h4>
 		<h3>8.	Что для вас приоритетно при выборе работы?</h3>
-			<textarea class="form-control" rows="6"></textarea>
+			<textarea class="form-control" rows="6" placeholder="Напишите ответ"></textarea>
 			<a class="cont">Следующий вопрос</a>
 	</div>
 
@@ -462,6 +464,21 @@
 			errors : 0,
 			iter : 0,
 		};
+		values.inputs = [
+			'first_ques',
+			'two_ques',
+			'three_ques',
+			'four_ques',
+			'',
+			'six_ques',
+			'seven_ques',
+			'',
+			'nine_ques',
+			'ten_ques'
+		];
+		function addInputValue(){
+		 return document.querySelector('.' + values.inputs[values.iter] + ' :checked').value;
+		};
 		values.answer = [
 			'- Человек, который умеет зарабатывать деньги',
 			'- Не слабее себя',
@@ -511,12 +528,13 @@
 			}else{
 				values.errors++;
 				if(values.errors == 2){
-					document.querySelector('input[name="'+values.form_input[values.iter]+'"]').setAttribute('value', 'Не отвечен: '+values.answer[values.iter]);
+					document.querySelector('input[name="'+values.form_input[values.iter]+'"]').setAttribute('value', '<span class="red_bg">Неправильно отвечен: '+ addInputValue() + ' </span>');
+					document.forms.my.ques_ans.setAttribute('value',values.iter+1 + ' вопросов');
 					//Если ошибки 2 то форму отправляем на обработку
 					stopTiming();
 					document.forms.my.submit();
 				}else{
-					document.querySelector('input[name="'+values.form_input[values.iter]+'"]').setAttribute('value', 'Не отвечен: '+values.answer[values.iter]);
+					document.querySelector('input[name="'+values.form_input[values.iter]+'"]').setAttribute('value', '<span class="red_bg">Неправильно отвечен: '+ addInputValue() + ' </span>');
 					values.change_active_test();//переключение вопросов
 					values.iter++;
 				}
@@ -526,9 +544,9 @@
 	// Обработка открытого вопроса
 		values.open_ques = function(a){
 			if (a === 1){
-				document.querySelector('input[name="'+values.form_input[values.iter]+'"]').setAttribute('value', document.querySelectorAll('textarea')[0].value);
+					document.querySelector('input[name="'+values.form_input[values.iter]+'"]').setAttribute('value', document.querySelectorAll('textarea')[0].value);
 			}else if(a === 2){
-				document.querySelector('input[name="'+values.form_input[values.iter]+'"]').setAttribute('value', document.querySelectorAll('textarea')[1].value);
+					document.querySelector('input[name="'+values.form_input[values.iter]+'"]').setAttribute('value', document.querySelectorAll('textarea')[1].value);
 			};
 			values.change_active_test();
 			values.iter++;
@@ -547,7 +565,7 @@
 			values.add_for_input(document.querySelector('.four_ques input:checked').value);
 		});
 		document.querySelectorAll('.cont')[4].addEventListener('click', function(){
-			values.open_ques(1);
+			if(document.querySelectorAll('.form-control')[0].value != '') values.open_ques(1);
 		});
 		document.querySelectorAll('.cont')[5].addEventListener('click', function(){
 			values.add_for_input(document.querySelector('.six_ques input:checked').value);
@@ -556,7 +574,7 @@
 			values.add_for_input(document.querySelector('.seven_ques input:checked').value);
 		});
 		document.querySelectorAll('.cont')[7].addEventListener('click', function(){
-			values.open_ques(2);
+			if(document.querySelectorAll('.form-control')[1].value != '') values.open_ques(2);
 		});
 		document.querySelectorAll('.cont')[8].addEventListener('click', function(){
 			values.add_for_input(document.querySelector('.nine_ques input:checked').value);
@@ -564,6 +582,7 @@
 		document.querySelectorAll('.cont')[9].addEventListener('click', function(){
 			values.add_for_input(document.querySelector('.ten_ques input:checked').value);
 			document.forms.my.check.setAttribute('value','Прошел');
+			document.forms.my.ques_ans.setAttribute('value',values.iter+1 + ' вопросов');
 			stopTiming();
 			document.forms.my.submit();
 		});
@@ -572,11 +591,6 @@
 			min : 0,
 			sec : 0
 		};
-		var timer = setInterval(function(){
-			if(timing.sec !== 59)
-				timing.sec++;
-			else{timing.min++;timing.sec = 0;}
-		}, 1000);
 		function stopTiming(){
 			clearInterval(timer);
 			var second = timing.sec > 9 ? timing.sec : '0' + timing.sec;
@@ -588,8 +602,16 @@
 <?php endif ?>
 
 		<script>
+			var timer = setInterval(function(){
+				if(timing.sec !== 59)
+					timing.sec++;
+				else{timing.min++;timing.sec = 0;}
+			}, 1000);
+
 			window.addEventListener('load',function(){
 				history.pushState({page: 1}, "title 1", "?page=1");
+				var t_d = new Date();
+				document.querySelector('input[name="date_time"]').setAttribute('value', t_d.getDate() + '.' + (t_d.getMonth()+1) + '.' + (t_d.getYear()-100) );
 			});
 		</script>
 </body>

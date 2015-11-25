@@ -16,13 +16,13 @@
 <!-- <div class="black_bg"></div> -->
 <?php
 	function connect_db(){
-		$mysqli_infunc = new mysqli('srv-db-plesk06.ps.kz:3306','kz123_test1','Admin123','kz123161_test11');
+		$mysqli_infunc = new mysqli('localhost','kipscrap_8','000001','kipscrap_8');
 		return $mysqli_infunc;
 	};
 	function showPeople(){
 		$mysqli = connect_db();
 		echo $mysqli->connect_error;
-		$result = $mysqli->query('SELECT * FROM test1');
+		$result = $mysqli->query('SELECT * FROM jobs');
 		$rows = '';
 		while($rows = $result->fetch_assoc()){
 			echo "<p>Имя:".$rows[name]."</p>";
@@ -31,7 +31,7 @@
 	$check = 'false';
 	function check_people(){
 		$mysqli = connect_db();
-		$result = $mysqli->query('SELECT * FROM test1');
+		$result = $mysqli->query('SELECT * FROM jobs');
 		$rows = '';
 		while($rows = $result->fetch_assoc()){
 			if($rows[numbers] == $_POST['numbers']){
@@ -42,13 +42,13 @@
 		};
 	};
 	$check = check_people();
-	function create_people($name,$email,$number,$country,$city,$timing,$check,$one,$two,$three,$four,$five,$six,$seven,$eight,$nine,$ten){
+	function create_people($name,$email,$number,$country,$city,$timing,$check,$one,$two,$three,$four,$five,$six,$seven,$eight,$nine,$ten,$ques,$time){
 		$mysqli = connect_db();
 		echo $mysqli->connect_error;
-		$mysqli->query("INSERT INTO test1 
-						(name,email,numbers,country,city,time,check_us,one,two,three,four,five,six,seven,eight,nine,ten)
+		$mysqli->query("INSERT INTO jobs 
+						(name,email,numbers,country,city,time,check_us,one,two,three,four,five,six,seven,eight,nine,ten,ques_ans,date_reg)
 						VALUES 
-						('$name','$email','$number','$country','$city','$timing','$check','$one','$two','$three','$four','$five','$six','$seven','$eight','$nine','$ten')
+						('$name','$email','$number','$country','$city','$timing','$check','$one','$two','$three','$four','$five','$six','$seven','$eight','$nine','$ten','$ques','$time')
 					");
 	};
 	if(!$_POST['name']){
@@ -80,14 +80,18 @@
 				$eight_q = $_POST['eight'];
 				$nine_q = $_POST['nine'];
 				$ten_q = $_POST['ten'];
-				create_people($name_user,$email_user,$numbers_user,$country_user,$city_user,$timing_user,$check_user,$one_q,$two_q,$three_q,$four_q,$five_q,$six_q,$seven_q,$eight_q,$nine_q,$ten_q);
+				$ques_ans = $_POST['ques_ans'];
+				$time_data = $_POST['date_time'];
+				create_people($name_user,$email_user,$numbers_user,$country_user,$city_user,$timing_user,$check_user,$one_q,$two_q,$three_q,$four_q,$five_q,$six_q,$seven_q,$eight_q,$nine_q,$ten_q,$ques_ans,$time_data);
 			if ($check_user == 'Прошел'){
 				echo '
 					<div class="content_noready_test clear">
-						<h3 id="text_header">Поздравляем вы прошли тестирование</h3>
-						<img id="video_ready" src="../img/video_ready.jpg" alt="">
+						<h3 id="text_header">Поздравляем, вы прошли тестирование!</h3>
+						<iframe id="video_ready" height="400" src="https://www.youtube.com/embed/tkvp1PXk6yM" frameborder="0" allowfullscreen></iframe>
 						<div class="text_content">
 							<p><span class="bold">Просим вас связаться по телефону </span> + 7 (705) 755-44-44 </p>
+                            <p>Сохраните данный номер телефона, так как покинув страницу, вернуться на нее возможности не будет</p>
+                            <p>Подробнее ознакомиться с деятельностью компании вы можете на сайте  <a href="http://kazchermet.com">http://kazchermet.com</a></p>
 						</div>
 					</div>	
 				';
@@ -97,7 +101,8 @@
 						<header id="headest" class="bold">Уважаемый респондент!</header>
 						<p>Благодарим вас за прохождения теста. К сожалению, тест не был пройден. В 
 							благодарность за потраченное время предлагаем вам несколько полезных книг по 
-							управленческим навыкам.
+							управленческим навыкам. <a href="https://www.dropbox.com/sh/0lly9qi03qj9kul/AAAZc-QAuSHXqX_o32xNm89va?dl=0"> Ссылка на книги </a>
+                            <p>Подробнее ознакомиться с деятельностью компании вы можете на сайте  <a id="main_href" href="http://kazchermet.com">http://kazchermet.com</a></p>
 						</p>
 					</div>
 				';

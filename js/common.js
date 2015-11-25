@@ -1,5 +1,23 @@
 $(document).ready(function() { 
  
+	$(".fancybox").click(function() {
+		$(".fancybox").fancybox({
+			maxWidth: 800,
+			maxHeight: 600,
+			fitToView: false,
+			width: document.documentElement.clientWidth > 700 ? '80%' : '90%',
+			height: document.documentElement.clientWidth > 700 ? '80%' : '50%',
+			autoSize: false,
+			closeClick: false,
+			openEffect: 'fade',
+			closeEffect: 'elastic',
+			helpers: {
+				title: {
+					type: 'inside'
+				}
+			}
+		});
+	});
 	//Цели для Яндекс.Метрики и Google Analytics
 	$(".count_element").on("click", (function() {
 		ga("send", "event", "goal", "goal");

@@ -7,13 +7,13 @@
 <body>
 	<?php
 	function connect_db(){
-		$mysqli_infunc = new mysqli('srv-db-plesk06.ps.kz:3306','kz123_test1','Admin123','kz123161_test11');
+		$mysqli_infunc = new mysqli('localhost','kipscrap_8','000001','kipscrap_8');
 		return $mysqli_infunc;
 	};
 	$check = false;
 	function check_people(){
 		$mysqli = connect_db();
-		$result = $mysqli->query('SELECT * FROM test1');
+		$result = $mysqli->query('SELECT * FROM jobs');
 		$rows = '';
 		while($rows = $result->fetch_assoc()){
 			print_r($rows);
