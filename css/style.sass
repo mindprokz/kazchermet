@@ -192,6 +192,23 @@ a
 				transition: outline .1s linear
 				&:focus
 					outline: 2px solid rgba(237,81,83, 0.6)
+		select 
+			@include mobile_small_Device
+				width: 220px
+			@include small_Device
+				width: 260px
+			float: right
+			height: 32px
+			border: 2px solid #d7d7d7
+			outline: 0
+			padding: 0 5px
+			color: #2a2a2a
+			font-family: Roboto
+			font-size: 11pt
+			font-weight: bold
+			transition: outline .1s linear
+			&:focus
+				outline: 2px solid rgba(237,81,83, 0.6)
 	.content_enter_test
 		float: left
 		color: #2a2a2a
